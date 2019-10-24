@@ -3,8 +3,11 @@ import { shallow } from 'enzyme';
 import { SurveyCreate } from './';
 
 describe('<SurveyCreate />', () => {
+  const createSurvey = jest.fn();
+
   const props = {
-    handleSubmit: jest.fn()
+    handleSubmit: jest.fn(),
+    createSurvey
   }
 
   it('should render', () => {
@@ -39,6 +42,58 @@ describe('<SurveyCreate />', () => {
         const result = renderError({ touched: true });
 
         expect(result).toEqual(null);
+      });
+    });
+
+    describe('renderInput', () => {
+      const input = { name: 'name', value: 'text' };
+      const label = 'Name:';
+      const meta = { touched: true };
+
+      it('should return a label with the correct text', () => {
+        const wrapper = shallow(<SurveyCreate {...props} />);
+        const { renderInput } = wrapper.instance();
+        const result = renderInput({input, label, meta});
+        const renderedResult = shallow(result);
+        const renderedLabel = renderedResult.find('label');
+
+        expect(renderedLabel.length).toEqual(1);
+        expect(renderedLabel.text()).toEqual('Name:');
+      });
+
+      it('should return an input with the correct name and value', () => {
+        const wrapper = shallow(<SurveyCreate {...props} />);
+        const { renderInput } = wrapper.instance();
+        const result = renderInput({input, label, meta});
+        const renderedResult = shallow(result);
+        const renderedInput = renderedResult.find('input');
+
+        expect(renderedInput.length).toEqual(1);
+        expect(renderedInput.props().name).toEqual('name');
+        expect(renderedInput.props().value).toEqual('text');
+      });
+
+      it('should call renderError', () => {
+        const wrapper = shallow(<SurveyCreate {...props} />);
+        const { renderInput } = wrapper.instance();
+        const renderError = jest.spyOn(wrapper.instance(), 'renderError');
+
+        renderInput({input, label, meta});
+
+        expect(renderError).toHaveBeenCalledWith(meta);
+      });
+    });
+
+    describe('onSubmit', () => {
+      it('should call createSurvey with the formValues', () => {
+        const wrapper = shallow(<SurveyCreate {...props} />);
+        const { onSubmit } = wrapper.instance();
+
+        const formValues = { foo: 'bar' };
+
+        onSubmit(formValues);
+
+        expect(createSurvey).toHaveBeenCalledWith(formValues);
       });
     });
   });

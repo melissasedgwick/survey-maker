@@ -1,1 +1,2 @@
 export const FETCH_SURVEYS = 'FETCH_SURVEYS';
+export const CREATE_SURVEY = 'CREATE_SURVEY';

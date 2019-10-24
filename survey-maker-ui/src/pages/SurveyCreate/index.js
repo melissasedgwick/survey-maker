@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { createSurvey } from '../../redux/actions';
 
 export class SurveyCreate extends React.Component {
   renderError({ error, touched }) {
@@ -22,8 +24,8 @@ export class SurveyCreate extends React.Component {
     );
   }
 
-  onSubmit(formValues) {
-    console.log(formValues);
+  onSubmit = (formValues) => {
+    this.props.createSurvey(formValues);
   }
 
   render() {
@@ -47,7 +49,9 @@ const validate = (formValues) => {
 };
 
 
-export default reduxForm({
-  form: 'listCreate',
+const formWrapped = reduxForm({
+  form: 'surveyCreate',
   validate
 })(SurveyCreate);
+
+export default connect(null, { createSurvey })(formWrapped);

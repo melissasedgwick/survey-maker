@@ -16,6 +16,18 @@ const getSurveys = (request, response) => {
   })
 }
 
+const createSurvey = (request, response) => {
+  const { name } = request.body;
+  
+  pool.query('INSERT INTO surveys (name) VALUES ($1) returning *', [name], (error, result) => {
+    if (error) {
+      throw error
+    }
+    response.status(201).send(result.rows[0])
+  })
+}
+
 module.exports = {
-  getSurveys
+  getSurveys,
+  createSurvey
 }
