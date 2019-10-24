@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import SurveyCreate from './pages/SurveyCreate.js'
-import SurveyDelete from './pages/SurveyDelete.js'
-import SurveyEdit from './pages/SurveyEdit.js'
-import SurveyAll from './pages/SurveyAll.js'
-import SurveyIndividual from './pages/SurveyIndividual.js'
+import SurveyCreate from './pages/SurveyCreate'
+import SurveyDelete from './pages/SurveyDelete'
+import SurveyEdit from './pages/SurveyEdit'
+import SurveyAll from './pages/SurveyAll'
+import SurveyIndividual from './pages/SurveyIndividual'
 
 class App extends React.Component {
   render() {
     return (
       <div>
         <div className="ui container" style={{ marginTop: '10px' }}>
-          <h1>Movie Night</h1>
+          <h1>Survey Maker</h1>
         </div>
         <div>
           <BrowserRouter>
