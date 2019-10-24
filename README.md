@@ -2,9 +2,20 @@
 
 A create-react-app project.
 
-## Available Scripts
+## Database and API ##
 
-In the project directory, you can run:
+To set up the database:
+
+1. Open PostgreSQL in the terminal: `psql`.
+2. Create a survey_maker database:  `CREATE DATABASE survey_maker;`
+3. Navigate into the database: `\c survey_maker`
+4. Set up the surveys table: `CREATE TABLE surveys(id SERIAL PRIMARY KEY, name VARCHAR(60));`
+
+Once you've set up your database, run `node index.js` in the `survey-maker-db` directory to start the API. You should see 'App running on port 3001' in the terminal.
+
+## Web Application ##
+
+The following commands are available in the `survey-maker-ui` directory:
 
 ### `yarn start`
 
