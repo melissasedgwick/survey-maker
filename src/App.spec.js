@@ -9,11 +9,10 @@ describe('<App />', () => {
     expect(wrapper.length).toEqual(1);
   });
 
-  it('should render a <h1 /> with the text `Survey Maker`', () => {
+  it('should render the <Header /> component', () => {
     const wrapper = mount(<App />);
-    const h1 = wrapper.find('h1');
+    const header = wrapper.find('Header');
 
-    expect(h1.length).toEqual(1);
-    expect(h1.text()).toEqual('Survey Maker');
+    expect(header.length).toEqual(1);
   });
 });

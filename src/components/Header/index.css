@@ -1,0 +1,13 @@
+#header-container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.header-left {
+  display: inline-block;
+}
+
+.header-right {
+  display: inline-block;
+  float: right;
+}
