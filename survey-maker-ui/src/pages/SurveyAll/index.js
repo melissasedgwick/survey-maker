@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchSurveys } from '../../redux/actions';
+import './index.css'
 
 export class SurveyAll extends React.Component {
   componentDidMount() {
@@ -22,7 +24,12 @@ export class SurveyAll extends React.Component {
   render() {
     return (
       <div>
-        <h2>SurveyAll</h2>
+        <h2>All Surveys:</h2>
+        <div id="new-survey-link">
+          <Link to="/survey/new">
+            Create a new survey
+          </Link>
+        </div>
         <div>{this.renderSurveys()}</div>
       </div>
     );
