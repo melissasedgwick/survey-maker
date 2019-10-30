@@ -18,7 +18,7 @@ class App extends React.Component {
             <Switch>
               <Route path="/" exact component={SurveyAll} />
               <Route path="/survey/new" component={SurveyCreate} />
-              <Route path="/survey/edit" component={SurveyEdit} />
+              <Route path="/survey/edit/:id" component={SurveyEdit} />
               <Route path="/survey/delete" component={SurveyDelete} />
               <Route path="/survey/:id" component={SurveyIndividual} />
             </Switch>

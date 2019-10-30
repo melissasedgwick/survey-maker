@@ -19,11 +19,11 @@ const getSurveys = (request, response) => {
 const createSurvey = (request, response) => {
   const { name } = request.body;
 
-  pool.query('INSERT INTO surveys (name) VALUES ($1) returning *', [name], (error, result) => {
+  pool.query('INSERT INTO surveys (name) VALUES ($1) returning *', [name], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(201).send(result.rows[0])
+    response.status(201).send(results.rows[0])
   })
 }
 
@@ -38,8 +38,23 @@ const getSurveyById = (request, response) => {
   })
 }
 
+const updateSurvey = (request, response) => {
+  const id = parseInt(request.params.id)
+  const { name } = request.body
+
+  pool.query(
+    'UPDATE surveys SET name = $1 WHERE id = $2 RETURNING *', [name, id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(results.rows[0])
+    }
+  )
+}
+
 module.exports = {
   getSurveys,
   createSurvey,
-  getSurveyById
+  getSurveyById,
+  updateSurvey
 }
