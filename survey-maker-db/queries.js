@@ -18,7 +18,7 @@ const getSurveys = (request, response) => {
 
 const createSurvey = (request, response) => {
   const { name } = request.body;
-  
+
   pool.query('INSERT INTO surveys (name) VALUES ($1) returning *', [name], (error, result) => {
     if (error) {
       throw error
@@ -27,7 +27,19 @@ const createSurvey = (request, response) => {
   })
 }
 
+const getSurveyById = (request, response) => {
+  const id = parseInt(request.params.id)
+
+  pool.query('SELECT * FROM surveys WHERE id = $1', [id], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows[0])
+  })
+}
+
 module.exports = {
   getSurveys,
-  createSurvey
+  createSurvey,
+  getSurveyById
 }

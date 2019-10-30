@@ -24,6 +24,7 @@ app.get('/', (request, response) => {
 
 app.get('/surveys', db.getSurveys);
 app.post('/surveys', db.createSurvey);
+app.get('/surveys/:id', db.getSurveyById)
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
