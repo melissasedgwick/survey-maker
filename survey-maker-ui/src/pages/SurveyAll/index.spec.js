@@ -58,6 +58,17 @@ describe('<SurveyAll />', () => {
         expect(firstSurvey.text()).toEqual('First Survey');
         expect(secondSurvey.text()).toEqual('Second Survey');
       });
+
+      it('should render each name as a Link to the survey', () => {
+        const wrapper = shallow(<SurveyAll {...propsWithSurveys} />);
+        const result = wrapper.instance().renderSurveys();
+
+        const firstSurveyLink = shallow(result[0]).find('Link');
+        const secondSurveyLink = shallow(result[1]).find('Link');
+
+        expect(firstSurveyLink.props().to).toEqual('survey/1');
+        expect(secondSurveyLink.props().to).toEqual('survey/2');
+      });
     });
   });
 

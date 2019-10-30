@@ -13,9 +13,9 @@ export class SurveyAll extends React.Component {
     return this.props.surveys[0].map(survey => {
       return(
         <div key={survey.id}>
-          <div>
+          <Link to={`survey/${survey.id}`}>
             {survey.name}
-          </div>
+          </Link>
         </div>
       );
     });
