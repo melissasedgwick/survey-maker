@@ -1,6 +1,6 @@
 import surveys from '../apis/surveys';
 import history from '../../history';
-import { FETCH_SURVEYS, CREATE_SURVEY, FETCH_SURVEY, EDIT_SURVEY } from './types';
+import { FETCH_SURVEYS, CREATE_SURVEY, FETCH_SURVEY, EDIT_SURVEY, DELETE_SURVEY } from './types';
 
 export const fetchSurveys = () => async dispatch => {
   const response = await surveys.get('/surveys');
@@ -40,4 +40,14 @@ export const editSurvey = (id, formValues) => async dispatch => {
   });
 
   history.push('/');
+};
+
+export const deleteSurvey = (id) => async dispatch => {
+  await surveys.delete(`/surveys/${id}`);
+
+  dispatch({
+    type: DELETE_SURVEY
+  });
+
+  history.push('/')
 };
