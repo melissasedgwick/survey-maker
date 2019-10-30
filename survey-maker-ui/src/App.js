@@ -1,17 +1,18 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import SurveyCreate from './pages/SurveyCreate'
 import SurveyDelete from './pages/SurveyDelete'
 import SurveyEdit from './pages/SurveyEdit'
 import SurveyAll from './pages/SurveyAll'
 import SurveyIndividual from './pages/SurveyIndividual'
 import Header from './components/Header';
+import history from './history';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <BrowserRouter>
+        <Router history={history}>
           <div>
             <Header />
             <Switch>
@@ -22,7 +23,7 @@ class App extends React.Component {
               <Route path="/survey/:id" component={SurveyIndividual} />
             </Switch>
           </div>
-        </BrowserRouter>
+        </Router>
       </div>
     );
   }

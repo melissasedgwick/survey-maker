@@ -10,7 +10,7 @@ export class SurveyAll extends React.Component {
   }
 
   renderSurveys() {
-    return this.props.surveys[0].map(survey => {
+    return this.props.surveys.map(survey => {
       return(
         <div key={survey.id}>
           <Link to={`survey/${survey.id}`}>
@@ -37,7 +37,7 @@ export class SurveyAll extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-  return { surveys: Object.values(state.surveys) };
+  return { surveys: Object.values(state.surveys.surveys) };
 }
 
 export default connect(mapStateToProps, { fetchSurveys })(SurveyAll);

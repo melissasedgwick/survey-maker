@@ -4,15 +4,15 @@ import { SurveyAll } from './';
 
 describe('<SurveyAll />', () => {
   const props = {
-    surveys: [[]],
+    surveys: [],
     fetchSurveys: jest.fn()
   };
 
   const propsWithSurveys = {
-    surveys: [[
+    surveys: [
       { id: 1, name: 'First Survey' },
       { id: 2, name: 'Second Survey' }
-    ]],
+    ],
     fetchSurveys: jest.fn()
   };
 
@@ -27,7 +27,7 @@ describe('<SurveyAll />', () => {
       it('should call fetchSurveys', () => {
         const fetchSurveysFunction = jest.fn();
         const newProps = {
-          surveys: [[]],
+          surveys: [],
           fetchSurveys: fetchSurveysFunction
         }
         shallow(<SurveyAll {...newProps} />);

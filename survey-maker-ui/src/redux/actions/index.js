@@ -1,4 +1,5 @@
 import surveys from '../apis/surveys';
+import history from '../../history';
 import { FETCH_SURVEYS, CREATE_SURVEY, FETCH_SURVEY } from './types';
 
 export const fetchSurveys = () => async dispatch => {
@@ -17,6 +18,8 @@ export const createSurvey = (formValues) => async dispatch => {
     type: CREATE_SURVEY,
     payload: response.data
   });
+
+    history.push('/');
 };
 
 export const fetchSurvey = (id) => async dispatch => {
