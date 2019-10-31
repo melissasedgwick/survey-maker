@@ -30,6 +30,7 @@ app.patch('/surveys/:id', db.updateSurvey);
 app.delete('/surveys/:id', db.deleteSurvey);
 
 app.post('/users', db.createUser);
+app.post('/users/signin', db.signinUser);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)

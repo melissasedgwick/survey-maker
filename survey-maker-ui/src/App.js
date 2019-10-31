@@ -6,6 +6,7 @@ import SurveyEdit from './pages/SurveyEdit';
 import SurveyAll from './pages/SurveyAll';
 import SurveyIndividual from './pages/SurveyIndividual';
 import UserCreate from './pages/UserCreate';
+import UserSignIn from './pages/UserSignIn';
 import Header from './components/Header';
 import history from './history';
 
@@ -23,6 +24,7 @@ class App extends React.Component {
               <Route path="/survey/delete/:id" component={SurveyDelete} />
               <Route path="/survey/:id" component={SurveyIndividual} />
               <Route path="/users/new" component={UserCreate} />
+              <Route path="/users/signin" component={UserSignIn} />
             </Switch>
           </div>
         </Router>

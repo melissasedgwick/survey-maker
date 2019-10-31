@@ -1,6 +1,6 @@
 import surveys from '../apis/surveys';
 import history from '../../history';
-import { FETCH_SURVEYS, CREATE_SURVEY, FETCH_SURVEY, EDIT_SURVEY, DELETE_SURVEY, CREATE_USER } from './types';
+import { FETCH_SURVEYS, CREATE_SURVEY, FETCH_SURVEY, EDIT_SURVEY, DELETE_SURVEY, CREATE_USER, SIGNIN_USER } from './types';
 
 export const fetchSurveys = () => async dispatch => {
   const response = await surveys.get('/surveys');
@@ -59,3 +59,12 @@ export const createUser = (formValues) => async dispatch => {
     type: CREATE_USER
   });
 };
+
+export const signinUser = (formValues) => async dispatch => {
+  const response = await surveys.post(`/users/signin`, { ...formValues });
+
+  dispatch({
+    type: SIGNIN_USER,
+    payload: response.data
+  });
+}

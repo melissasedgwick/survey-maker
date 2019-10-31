@@ -76,11 +76,23 @@ const createUser = (request, response) => {
   })
 }
 
+const signinUser = (request, response) => {
+  const { username, password } = request.body
+
+  pool.query('SELECT * FROM users WHERE username = $1 AND password = $2', [username, password], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows[0])
+  })
+}
+
 module.exports = {
   getSurveys,
   createSurvey,
   getSurveyById,
   updateSurvey,
   deleteSurvey,
-  createUser
+  createUser,
+  signinUser
 }
