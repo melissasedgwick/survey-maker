@@ -10,6 +10,7 @@ To set up the database:
 2. Create a survey_maker database:  `CREATE DATABASE survey_maker;`
 3. Navigate into the database: `\c survey_maker`
 4. Set up the surveys table: `CREATE TABLE surveys(id SERIAL PRIMARY KEY, name VARCHAR(60));`
+5. Set up the users table: `CREATE TABLE users(id SERIAL PRIMARY KEY, username VARCHAR(15) NOT NULL, password VARCHAR(20) NOT NULL);`
 
 Once you've set up your database, run `node index.js` in the `survey-maker-db` directory to start the API. You should see 'App running on port 3001' in the terminal.
 

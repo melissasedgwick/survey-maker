@@ -29,6 +29,8 @@ app.get('/surveys/:id', db.getSurveyById);
 app.patch('/surveys/:id', db.updateSurvey);
 app.delete('/surveys/:id', db.deleteSurvey);
 
+app.post('/users', db.createUser);
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 });

@@ -65,10 +65,22 @@ const deleteSurvey = (request, response) => {
   )
 }
 
+const createUser = (request, response) => {
+  const { username, password } = request.body
+
+  pool.query('INSERT INTO users (username, password) VALUES ($1, $2) returning *', [username, password], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(201).send(results.rows[0])
+  })
+}
+
 module.exports = {
   getSurveys,
   createSurvey,
   getSurveyById,
   updateSurvey,
-  deleteSurvey
+  deleteSurvey,
+  createUser
 }
