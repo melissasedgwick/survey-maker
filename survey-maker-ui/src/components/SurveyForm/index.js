@@ -1,27 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { renderInput } from '../../helpers/form';
 
 export class SurveyForm extends React.Component {
-  renderError({ error, touched }) {
-    if (touched && error) {
-      return (
-        <div className="ui error message">
-          <div className="header">{error}</div>
-        </div>
-      );
-    } else { return null };
-  };
-
-  renderInput = ({ input, label, meta }) => {
-    return (
-      <div className="field">
-        <label>{label}</label>
-        <input {...input} />
-        {this.renderError(meta)}
-      </div>
-    );
-  }
-
   onSubmit = (formValues) => {
     this.props.onSubmit(formValues);
   }
@@ -29,7 +10,7 @@ export class SurveyForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
-        <Field name="name" component={this.renderInput} label="Name:"/>
+        <Field name="name" component={renderInput} label="Name:"/>
         <button className="ui button primary">Submit</button>
       </form>
     );
