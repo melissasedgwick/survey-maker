@@ -8,10 +8,24 @@ export class SurveyAll extends React.Component {
     this.props.fetchSurveys();
   }
 
+  renderEditDelete(survey) {
+    return (
+      <div className="right floated content">
+        <Link to={`/survey/edit/${survey.id}`} className="ui button primary" >
+          Edit
+        </Link>
+        <Link to={`/survey/delete/${survey.id}`} className="ui button negative">
+          Delete
+        </Link>
+      </div>
+    );
+  }
+
   renderSurveys() {
     return this.props.surveys.map(survey => {
       return(
         <div key={survey.id} className="item">
+          {this.renderEditDelete(survey)}
           <div className="content">
             <Link to={`survey/${survey.id}`} className="header">
               {survey.name}
