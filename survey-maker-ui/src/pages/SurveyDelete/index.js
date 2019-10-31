@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchSurvey, deleteSurvey } from '../../redux/actions';
+import history from '../../history';
+import Modal from '../../components/Modal'
 
 export class SurveyDelete extends React.Component {
   componentDidMount() {
@@ -32,9 +34,12 @@ export class SurveyDelete extends React.Component {
   render() {
     return (
       <div>
-        <h2>Delete Survey</h2>
-        {this.renderContent()}
-        {this.renderActions()}
+        <Modal
+          title="Delete Survey"
+          content={this.renderContent()}
+          actions={this.renderActions()}
+          onDismiss={() => history.push('/')}
+        />
       </div>
     );
   };

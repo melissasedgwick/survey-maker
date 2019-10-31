@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { SurveyDelete } from './';
+import history from '../../history';
 
 describe('<App />', () => {
   const fetchSurvey = jest.fn();
@@ -89,28 +90,44 @@ describe('<App />', () => {
   });
 
   describe('render', () => {
-    it('should render a <h2 /> with the text `Delete Survey`', () => {
+    it('should render a Modal', () => {
       const wrapper = shallow(<SurveyDelete {...props} />);
-      const h2 = wrapper.find('h2');
+      const modal = wrapper.find('Modal');
 
-      expect(h2.length).toEqual(1);
-      expect(h2.text()).toEqual('Delete Survey');
+      expect(modal.length).toEqual(1);
     });
 
-    it('should call renderContent', () => {
+    it('should pass title prop of `Delete Survey` to Modal', () => {
       const wrapper = shallow(<SurveyDelete {...props} />);
-      const renderContent = jest.spyOn(wrapper.instance(), 'renderContent');
-      wrapper.instance().render();
+      const modal = wrapper.find('Modal');
 
-      expect(renderContent).toHaveBeenCalledTimes(1);
+      expect(modal.props().title).toEqual('Delete Survey');
     });
 
-    it('should call renderActions', () => {
+    it('should pass content prop as renderContent to Modal', () => {
       const wrapper = shallow(<SurveyDelete {...props} />);
-      const renderActions = jest.spyOn(wrapper.instance(), 'renderActions');
-      wrapper.instance().render();
+      const modal = wrapper.find('Modal');
+      const renderedContent = wrapper.instance().renderContent();
 
-      expect(renderActions).toHaveBeenCalledTimes(1);
+      expect(modal.props().content).toEqual(renderedContent);
+    });
+
+    it('should pass actions prop as renderActions to Modal', () => {
+      const wrapper = shallow(<SurveyDelete {...props} />);
+      const modal = wrapper.find('Modal');
+      const renderedActions = JSON.stringify(wrapper.instance().renderActions());
+      const modalActions = JSON.stringify(modal.props().actions);
+
+      expect(modalActions).toEqual(renderedActions);
+    });
+
+    it('should pass an onDismiss prop to Modal which redirects to `/`', () => {
+      const wrapper = shallow(<SurveyDelete {...props} />);
+      const modal = wrapper.find('Modal');
+      const historySpy = jest.spyOn(history, 'push');
+      modal.props().onDismiss();
+
+      expect(historySpy).toHaveBeenCalledWith('/');
     });
   });
 });
