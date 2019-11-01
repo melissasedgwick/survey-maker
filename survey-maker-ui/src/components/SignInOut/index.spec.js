@@ -33,7 +33,7 @@ describe('<App />', () => {
       describe('when signed out', () => {
         it('should render a `Sign In` Link', () => {
           const wrapper = shallow(<SignInOut isSignedIn={false} />);
-          const link = wrapper.find('Link');
+          const link = wrapper.find('Link[id="sign-in-link"]');
 
           expect(link.length).toEqual(1);
           expect(link.text()).toEqual('Sign In');
@@ -41,9 +41,24 @@ describe('<App />', () => {
 
         it('`Sign In` link should redirect to `/users/signin`', () => {
           const wrapper = shallow(<SignInOut isSignedIn={false} />);
-          const link = wrapper.find('Link');
+          const link = wrapper.find('Link[id="sign-in-link"]');
 
           expect(link.props().to).toEqual('/users/signin');
+        });
+
+        it('should render a `Sign Up` Link', () => {
+          const wrapper = shallow(<SignInOut isSignedIn={false} />);
+          const link = wrapper.find('Link[id="sign-up-link"]');
+
+          expect(link.length).toEqual(1);
+          expect(link.text()).toEqual('Sign Up');
+        });
+
+        it('`Sign Up` link should redirect to `/users/new`', () => {
+          const wrapper = shallow(<SignInOut isSignedIn={false} />);
+          const link = wrapper.find('Link[id="sign-up-link"]');
+
+          expect(link.props().to).toEqual('/users/new');
         });
       });
     });

@@ -7,9 +7,14 @@ export class SignInOut extends React.Component {
   renderButton() {
     if (!this.props.isSignedIn) {
       return (
-        <Link className="ui button primary" to="/users/signin">
-          Sign In
-        </Link>
+        <div>
+          <Link className="ui button primary" to="/users/signin" id="sign-in-link">
+            Sign In
+          </Link>
+          <Link className="ui button primary" to="/users/new" id="sign-up-link">
+            Sign Up
+          </Link>
+        </div>
       )
     }
     if (this.props.isSignedIn) {
