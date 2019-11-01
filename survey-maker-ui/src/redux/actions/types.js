@@ -6,3 +6,4 @@ export const DELETE_SURVEY = 'DELETE_SURVEY';
 
 export const CREATE_USER = 'CREATE_USER';
 export const SIGNIN_USER = 'SIGNIN_USER';
+export const SIGNOUT_USER = 'SIGNOUT_USER';
